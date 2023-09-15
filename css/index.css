@@ -1,0 +1,65 @@
+/* Estilos para o header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+/* Estilos para o footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Estilos comuns para botões e entradas de texto */
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="number"],
+input[type="text"] {
+    padding: 5px;
+    width: 100px;
+}
+
+/* Estilos específicos para as páginas */
+/* Página para verificar idade */
+#idade-page {
+    text-align: center;
+}
+
+/* Página para calcular média */
+#media-page {
+    text-align: center;
+}
+
+/* Página para calcular IMC */
+#imc-page {
+    text-align: center;
+}
+
+/* Página para calcular aumento */
+#aumento-page {
+    text-align: center;
+}

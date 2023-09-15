@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entra 21 Trabalho</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Estilos para ocultar as abas */
+        .tab-content {
+            display: none;
+        }
+
+        /* Estilo para mostrar a aba ativa */
+        .active-tab {
+            display: block;
+        }
+
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Estilos para o cabeçalho e a navegação */
+        header {
+            background-color: #333; /* Cor cinza */
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        header .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Estilos para o rodapé */
+        footer {
+            background-color: #333; /* Cor cinza */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://yt3.googleusercontent.com/YB8q8_YewF-82qH60--QB1AP3JDvLmmwbQZIsdyp94nCrjN5K6dhfWj-hS3E1Nc3aC4NS9qKiQ=s176-c-k-c0x00ffffff-no-rj" alt="Logomarca da Empresa">
+        </div>
+        <h1>Entra 21 Trabalho</h1>
+        <nav>
+            <ul>
+                <li><a href="#idade" onclick="showTab('idade')">Verificar Idade</a></li>
+                <li><a href="#media" onclick="showTab('media')">Calcular Média</a></li>
+                <li><a href="#imc" onclick="showTab('imc')">Calcular IMC</a></li>
+                <li><a href="#aumento" onclick="showTab('aumento')">Calcular Aumento</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="tab-content" id="idade">
+        <h2>Verificar Idade</h2>
+        <label for="idade">Digite sua idade:</label>
+        <input type="number" id="idadeInput">
+        <button onclick="calcularIdade()">Verificar</button>
+        <p id="idadeResultado"></p>
+    </div>
+
+    <div class="tab-content" id="media">
+        <h2>Calcular Média</h2>
+        <label for="nota1">Nota 1:</label>
+        <input type="number" id="nota1">
+        <br>
+        <label for="nota2">Nota 2:</label>
+        <input type="number" id="nota2">
+        <br>
+        <label for="nota3">Nota 3:</label>
+        <input type="number" id="nota3">
+        <br>
+        <label for="frequencia">Frequência (%):</label>
+        <input type="number" id="frequencia">
+        <br>
+        <button onclick="calcularMedia()">Calcular</button>
+        <p id="mediaResultado"></p>
+    </div>
+    
+    <div class="tab-content" id="imc">
+        <h2>Calcular IMC</h2>
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso">
+        <br>
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura">
+        <br>
+        <button onclick="calcularIMC()">Calcular</button>
+        <p id="imcResultado"></p>
+    </div>
+    
+    <div class="tab-content" id="aumento">
+        <h2>Calcular Aumento Salarial</h2>
+        <label for="cargo">Cargo:</label>
+        <select id="cargo">
+            <option value="gerente">Gerente</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="operador">Operador</option>
+            <option value="colaborador">Colaborador</option>
+        </select>
+        <br>
+        <label for="salario">Salário:</label>
+        <input type="number" id="salario" min="0" step="0.01">
+        <br>
+        <button onclick="calcularAumentoSalarial()">Calcular</button>
+        <p id="aumentoResultado"></p>
+    </div>
+
+    <!-- Script JavaScript para alternar entre as abas -->
+    <script>
+        function showTab(tabId) {
+            // Esconde todas as abas
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active-tab");
+            }
+
+            // Mostra a aba clicada
+            var tab = document.getElementById(tabId);
+            tab.classList.add("active-tab");
+        }
+
+        // Função para calcular a idade (exemplo)
+        function calcularIdade() {
+            var idadeInput = document.getElementById("idadeInput").value;
+            var resultado = "Sua idade é: " + idadeInput + " anos.";
+            document.getElementById("idadeResultado").textContent = resultado;
+        }
+
+        // Função para calcular a média
+        function calcularMedia() {
+            var nota1 = parseFloat(document.getElementById("nota1").value);
+            var nota2 = parseFloat(document.getElementById("nota2").value);
+            var nota3 = parseFloat(document.getElementById("nota3").value);
+            var frequencia = parseFloat(document.getElementById("frequencia").value);
+            
+            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(frequencia)) {
+                document.getElementById("mediaResultado").textContent = "Preencha todos os campos corretamente.";
+                return;
+            }
+            
+            var media = (nota1 + nota2 + nota3) / 3;
+            var situacao = media >= 6 && frequencia >= 75 ? "Aprovado" : "Reprovado";
+            var resultado = "Média: " + media.toFixed(2) + "<br>Situação: " + situacao;
+            document.getElementById("mediaResultado").innerHTML = resultado;
+        }
+
+        // Função para calcular o IMC
+        function calcularIMC() {
+            var peso = parseFloat(document.getElementById("peso").value);
+            var altura = parseFloat(document.getElementById("altura").value);
+            
+            if (isNaN(peso) || isNaN(altura) || altura === 0) {
+                document.getElementById("imcResultado").textContent = "Preencha todos os campos corretamente.";
+                return;
+            }
+
+            var imc = peso / (altura * altura);
+            var resultado = "Seu IMC é: " + imc.toFixed(2);
+
+            // Adicione aqui a lógica para classificar o IMC e exibir a classificação
+            var classificacao = "";
+
+            if (imc < 18.5) {
+                classificacao = "Abaixo do Peso";
+            } else if (imc < 24.9) {
+                classificacao = "Peso Normal";
+            } else if (imc < 29.9) {
+                classificacao = "Sobrepeso";
+            } else if (imc < 34.9) {
+                classificacao = "Obesidade Grau 1";
+            } else if (imc < 39.9) {
+                classificacao = "Obesidade Grau 2";
+            } else {
+                classificacao = "Obesidade Grau 3";
+            }
+
+            resultado += "<br>Classificação: " + classificacao;
+
+            document.getElementById("imcResultado").innerHTML = resultado;
+        }
+
+        // Função para calcular o aumento salarial
+        function calcularAumentoSalarial() {
+            var cargo = document.getElementById("cargo").value;
+            var salario = parseFloat(document.getElementById("salario").value);
+
+            if (isNaN(salario) || salario < 0) {
+                document.getElementById("aumentoResultado").textContent = "Preencha o salário corretamente.";
+                return;
+            }
+
+            var aumento = 0;
+
+            switch (cargo) {
+                case "gerente":
+                    aumento = salario * 0.05;
+                    break;
+                case "supervisor":
+                    aumento = salario * 0.08;
+                    break;
+                case "operador":
+                    aumento = salario * 0.09;
+                    break;
+                case "colaborador":
+                    aumento = salario * 0.1;
+                    break;
+                default:
+                    aumento = 0;
+                    break;
+            }
+
+            var novoSalario = salario + aumento;
+            var resultado = "Salário Atual: R$" + salario.toFixed(2) + "<br>Aumento: R$" + aumento.toFixed(2) + "<br>Novo Salário: R$" + novoSalario.toFixed(2);
+            document.getElementById("aumentoResultado").innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>
